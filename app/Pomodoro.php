@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class Pomodoro extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,8 +12,10 @@ class User extends Model
      * @var array
      */
     protected $fillable = [
-        'seconds', 'date',
+        'seconds'
     ];
+    /** The relationships that should always be loaded.  */
+    protected $with = ['user', 'tags'];
 
     /**
      * Get the User that owns the pomodoro

@@ -12,28 +12,23 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 {
     use Authenticatable, Authorizable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    /** The attributes that are mass assignable. */
     protected $fillable = [
-        'name', 'email',
+        'name', 'email', 'password', 'profile_hash'
     ];
 
-    /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
+    /** The attributes excluded from the model's JSON form. */
     protected $hidden = [
         'password',
     ];
 
-    /**
-     * Get the pomodoros from the User
-     */
+    /** Get the pomodoros from the User */
     public function pomodoros() {
         return $this->hasMany('App\Pomodoro');
+    }
+
+    /** Get the tags from the User */
+    public function tags() {
+        return $this->belongsToMany('App\Tag', 'user_tag');
     }
 }
